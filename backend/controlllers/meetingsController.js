@@ -5,19 +5,29 @@ const { meetingsValidation } = require("../validator/meetingValidation");
 
 const createMeeting = async (req, res) => {
   try {
-    const { error } = meetingsValidation(req.body);
+    // const { error } = meetingsValidation(req.body);
 
-    if (error) {
-      throw new Error(error.details[0].message);
-    }
+    // if (error) {
+    //   throw new Error(error.details[0].message);
+    // }
 
     const { title, startTime, endTime, participants } = req.body;
+    let date = new Date();
+    let toDay =
+      date.getFullYear().toString().padStart(2, 0) +
+      "-" +
+      (date.getMonth() + 1).toString().padStart(2, 0) +
+      "-" +
+      date.getDate().toString().padStart(2, 0);
+
+    let startDate = new Date(toDay + " " + startTime).getTime();
+    let endDate = new Date(toDay + " " + endTime).getTime();
 
     const newMeeting = await new Meetings({
       id: uuidv4(),
       title,
-      startTime,
-      endTime,
+      startDate,
+      endDate,
       participants,
     });
 
@@ -49,6 +59,8 @@ const getMeetingById = async (req, res) => {
     });
   }
 };
-let val = moment().format("Do MMMM YYYY");
-console.log(val);
+
 module.exports = { createMeeting, getMeetingById };
+
+// let val = moment().format("Do MMMM YYYY");
+// console.log(val);

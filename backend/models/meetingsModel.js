@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { boolean, number } = require("joi");
 const { Schema } = mongoose;
 
 const participantsSchema = new Schema({
@@ -13,8 +14,8 @@ const participantsSchema = new Schema({
     unique: true,
   },
   rsvp: {
-    type: String,
-    default: "MayBe",
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -32,12 +33,14 @@ const meetingsSchema = new Schema(
       type: [participantsSchema],
       default: Array,
     },
-    startTime: {
-      type: String,
+    startDate: {
+      type: Number,
+      default: 0,
       required: true,
     },
-    endTime: {
-      type: String,
+    endDate: {
+      type: Number,
+      default: 0,
       required: true,
     },
     creationTimestamp: {
