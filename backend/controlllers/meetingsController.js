@@ -57,7 +57,7 @@ const createMeeting = async (req, res) => {
         .save()
         .then((res) => console.log(res))
         .catch((err) => {
-          throw new Error(err.message);
+          throw new Error(err);
         });
     }
 
@@ -72,8 +72,9 @@ const createMeeting = async (req, res) => {
     //   }
     // })
   } catch (error) {
+    console.log(error);
     res.status(400).json({
-      message: error.message,
+      message: error,
     });
   }
 };
