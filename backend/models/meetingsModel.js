@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { boolean, number } = require("joi");
 const { Schema } = mongoose;
 
 const participantsSchema = new Schema({
@@ -11,7 +10,6 @@ const participantsSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
   rsvp: {
     type: Boolean,

@@ -6,7 +6,7 @@ const {
 
 const router = express.Router();
 
-router.post("/", createMeeting);
-router.get("/", getMeetingById);
+router.post("/createMeeting", createMeeting);
+router.get("/getMeetingById", getMeetingById);
 
 module.exports = router;
